@@ -3,7 +3,7 @@
 computeStatistics.py - Calcula estadisticas descriptivas de un archivo.
 
 Este programa lee un archivo con un numero por linea y calcula:
-- Cuenta, Media, Mediana, Moda, Desviacion Estandar y Varianza
+- Cuenta, Media, Mediana, Moda, Desviacion Estandar Poblacional y Varianza Poblacional
 
 Uso: python compute_statistics.py archivoConDatos.txt
 
@@ -342,19 +342,19 @@ def calculate_sum_squared_diff(numbers, mean):
     return total
 
 
-def calculate_sample_variance(numbers, mean):
+def calculate_population_variance(numbers, mean):
     """
-    Calculate the sample variance (for reporting).
+    Calculate the population variance.
 
     Args:
         numbers: List of numbers
         mean: Pre-calculated mean value
 
     Returns:
-        Sample variance (using n-1 denominator)
+        Population variance (using n denominator)
     """
     sum_sq = calculate_sum_squared_diff(numbers, mean)
-    return sum_sq / (len(numbers) - 1)
+    return sum_sq / len(numbers)
 
 
 def calculate_population_std_dev(numbers, mean):
@@ -560,7 +560,7 @@ def main():
     mean = calculate_mean(numbers)
     median = calculate_median(numbers)
     mode = calculate_mode(numbers)
-    variance = calculate_sample_variance(numbers, mean)
+    variance = calculate_population_variance(numbers, mean)
     std_dev = calculate_population_std_dev(numbers, mean)
 
     elapsed_time = time.time() - start_time
